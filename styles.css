@@ -1,4 +1,6 @@
 *, *::before, *::after {
+    margin: 0;
+    padding: 0;
     box-sizing: inherit;
 }
 
@@ -7,13 +9,110 @@ html {
 }
 
 :root {
+    /* Colors */
     --bg-color-main: #BDCFDB;
     --bg-color-cards: #FFFFFF;
+    --bg-btn-grey: #ECECEC;
+
 
     --accent-color: #3E92CC;
     --text-color: #555;
-    --bg-btn-grey: #ECECEC;
+    --text-color-grey: rgb(85, 85, 85, 0.5);
+
     --border-color-check: #CCCCCC;
     --delete-color: #E37B7B;
+
+    /* FONT */
+    color: var(--text-color);
+    font-family: 'Inter', sans-serif;
+    line-height: 150%;
+    --font-xl: 32px;
+    --font-l: 20px;
+    --font-m: 16px;
+    --font-s: 12px;
+    font-size: var(--font-m);
+
+
+}
+
+body {
+    background-color: var(--bg-color-main);
+
+    display: grid;
+    grid-template-columns: 327px 1fr;
+}
+
+#left-section {
+    padding: 40px;
+    background-color: var(--bg-color-cards);
+    height: 100vh;
+
+    border-top-right-radius: 50px;
+    box-shadow: 6px 4px 0px rgba(62, 146, 204, 0.25);
+}
+
+#left-title {
+    font-size: var(--font-xl);
+    color: var(--accent-color);
+    font-weight: 900;
+    margin-bottom: 24px;
+}
+
+h2 {
+    font-size: var(--font-l);
+    font-weight: 700;
+
+    margin-bottom: 16px;
+}
+
+fieldset {
+    width: 100%;
+    margin-bottom: 16px;
+    border-style: none;
+}
+
+fieldset:not(:last-of-type) input {
+    display: block;
+    margin-top: 4px;
+    background-color: var(--bg-btn-grey);
+    width: 100%;
+    border-style: none;
+    border-radius: 4px;
+    padding: 16px;
+}
+
+::placeholder {
+    font-size: var(--font-m);
+    color: var(--text-color-grey);
+}
+
+fieldset:last-of-type input {
+    width: 16px;
+    height: 16px;
+    background-color: var(--bg-btn-grey);
+    border-style: none;
+    border: 1px solid var(--border-color-check);
+}
+
+.btn {
+    font-size: var(--font-m);
+    text-align: center;
+    padding: 12px;
+    width: 100%;
+    border-style: none;
+    border-radius: 4px;
+
+    font-weight: 800;
+    line-height: 150%;
+
+}
+
+.btn.añadir {
+    background: var(--accent-color);
+    color: var(--bg-color-cards);
+}
+
+#about_container {
+    margin-top: 48px;
 }
 
