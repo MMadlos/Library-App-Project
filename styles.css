@@ -42,6 +42,8 @@ body {
     grid-template-columns: 327px 1fr;
 }
 
+/* LEFT SECTION */
+
 #left-section {
     padding: 40px;
     background-color: var(--bg-color-cards);
@@ -86,6 +88,12 @@ fieldset:not(:last-of-type) input {
     color: var(--text-color-grey);
 }
 
+fieldset:last-of-type {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
 fieldset:last-of-type input {
     width: 16px;
     height: 16px;
@@ -95,10 +103,10 @@ fieldset:last-of-type input {
 }
 
 .btn {
+    font-family: 'Inter', sans-serif;;
     font-size: var(--font-m);
     text-align: center;
     padding: 12px;
-    width: 100%;
     border-style: none;
     border-radius: 4px;
 
@@ -110,9 +118,75 @@ fieldset:last-of-type input {
 .btn.añadir {
     background: var(--accent-color);
     color: var(--bg-color-cards);
+    width: 100%;
 }
 
 #about_container {
     margin-top: 48px;
 }
 
+/* MAIN SECTION */
+#main-section {
+    padding-top: 40px;
+}
+
+#grid-container {
+    display: grid;
+    gap: 16px;
+    grid-template-columns: repeat(3, auto);
+
+    justify-content: center;
+}
+
+.card-container {
+    background-color: var(--bg-color-cards);
+    padding: 16px;
+    border-radius: 8px;
+    box-shadow: 4px 4px 0px rgba(62, 146, 204, 0.15);
+}
+
+.text-title {
+    font-size: var(--font-s);
+    color: var(--text-color-grey);
+    line-height: 100%;
+}
+
+.text-input {
+    font-size: var(--font-m);
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.pages {
+    font-size: var(--font-s);
+    font-weight: 700;
+    margin-bottom: 40px;
+}
+
+.card-btns-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.btn.no-leido {
+    width: 116px;
+    color: var(--text-color);
+}
+
+.btn.leido {
+    width: 116px;
+    color: var(--bg-color-cards);
+    background-color: var(--accent-color);
+}
+
+.btn.eliminar {
+    background-color: transparent;
+    color: var(--delete-color);
+    font-weight: 600;
+    text-decoration: underline;
+    width: 116px;
+}
+
+.btn:hover {
+    opacity: 0.5;
+}
