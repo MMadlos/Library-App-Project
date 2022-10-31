@@ -1,9 +1,19 @@
 *, *::before, *::after {
     box-sizing: inherit;
-  }
+}
 
-  html {
+html {
     box-sizing: border-box;
-  }
+}
 
-  
+:root {
+    --bg-color-main: #BDCFDB;
+    --bg-color-cards: #FFFFFF;
+
+    --accent-color: #3E92CC;
+    --text-color: #555;
+    --bg-btn-grey: #ECECEC;
+    --border-color-check: #CCCCCC;
+    --delete-color: #E37B7B;
+}
+
