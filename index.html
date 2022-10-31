@@ -9,6 +9,54 @@
     <script src="script.js" defer></script>
 </head>
 <body>
-    
+    <section id="left-section">
+        <h1>Library</h1>
+        <div id="new_book_container">
+            <h2>Añadir libro</h2>
+            <form action="">
+                <label for="titulo">Título</label>
+                <Input type="text" id="titulo" placeholder="El nombre del viento"></Input>
+                
+                <label for="Autor">Autor</label>
+                <Input type="text" id="autor" placeholder="Ejemplo"></Input>
+
+                <label for="paginas">Páginas</label>
+                <Input type="number" id="paginas" placeholder="165" min="1"></Input>
+
+                <label for="leido">Leído</label>
+                <input type="checkbox" id="leido">
+
+                <button>Añadir</button>
+            </form>
+        </div>
+        <div id="about_container">
+            <h2>About this project</h2>
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Odio velit eveniet nesciunt amet beatae molestias magni ut corporis ipsum suscipit. Deleniti veniam ipsam pariatur tempora eius non animi, facere veritatis!</p>
+            <br>
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
+        </div>
+    </section>
+    <main id="main-section">
+        <div class="card-container">
+            <div class="text-container">
+                <div class="text-pair-container">
+                    <p>Título</p>
+                    <p>Lorem Ipsum Lorem Ipsum</p>
+                </div>
+                <div class="text-pair-container">
+                    <p>Autor</p>
+                    <p>Lorem Ipsum Lorem</p>
+                </div>
+                <div class="text-pair-container">
+                    <p>Páginas</p>
+                    <p>128</p>
+                </div>
+            </div>
+            <div class="card-btns-container">
+                <button>No leído</button>
+                <button>Eliminar</button>
+            </div>
+        </div>
+    </main>
 </body>
 </html>
