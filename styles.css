@@ -131,9 +131,10 @@ fieldset:last-of-type input {
 }
 
 #grid-container {
+    padding: 0 80px;
     display: grid;
     gap: 16px;
-    grid-template-columns: repeat(3, auto);
+    grid-template-columns: repeat(3, 1fr);
 
     justify-content: center;
 }
@@ -143,6 +144,10 @@ fieldset:last-of-type input {
     padding: 16px;
     border-radius: 8px;
     box-shadow: 4px 4px 0px rgba(62, 146, 204, 0.15);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .text-title {
@@ -152,15 +157,15 @@ fieldset:last-of-type input {
 }
 
 .text-input {
-    font-size: var(--font-m);
+    font-size: var(--font-l);
     font-weight: 600;
-    margin-bottom: 8px;
+    margin-bottom: 16px;
 }
 
 .pages {
     font-size: var(--font-s);
     font-weight: 700;
-    margin-bottom: 40px;
+    margin-bottom: 24px;
 }
 
 .card-btns-container {
