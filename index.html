@@ -19,23 +19,23 @@
             <form action="">
                 <fieldset>
                     <label for="titulo">Título</label>
-                    <Input type="text" id="titulo" placeholder="El nombre del viento"></Input>
+                    <Input type="text" name="titulo" id="titulo" placeholder="El nombre del viento"></Input>
                 </fieldset>
                 
                 <fieldset>
                     <label for="autor">Autor</label>
-                    <Input type="text" id="autor" placeholder="Ejemplo"></Input>
+                    <Input type="text" name="autor" id="autor" placeholder="Ejemplo"></Input>
                 </fieldset>
                 
                 <fieldset>
                     <label for="paginas">Páginas</label>
-                    <Input type="number" id="paginas" placeholder="165" min="1"></Input>
+                    <Input type="number" name="paginas" id="paginas" placeholder="165" min="1"></Input>
                 </fieldset>
                 <fieldset>
                     <label for="leido">Leído</label>
-                    <input type="checkbox" id="leido">
+                    <input type="checkbox" name="leido" id="leido">
                 </fieldset>
-                <button id="btn_añadir" class="btn añadir">Añadir</button>
+                <button type="button" id="btn_añadir" class="btn añadir">Añadir</button>
             </form>
         </div>
         <div id="about_container">
@@ -48,20 +48,6 @@
     <main id="main-section">
         <div id="grid-container">
             <!-- <div class="card-container">
-                <div class="text-container">
-                    <p class="text-title">Título</p>
-                    <p class="text-input" id="bookTitle"></p>
-                    <p class="text-title">Autor</p>
-                    <p class="text-input" id="bookAuthor"></p>
-                    <p class="text-title">Páginas</p>
-                    <p class="pages" id="bookPages"></p>
-                </div>
-                <div class="card-btns-container">
-                    <button class="btn no-leido">No leído</button>
-                    <button class="btn eliminar">Eliminar</button>
-                </div>
-            </div>
-            <div class="card-container">
                 <div class="text-container">
                     <p class="text-title">Título</p>
                     <p class="text-input">El tempor de un hombre sabio</p>
