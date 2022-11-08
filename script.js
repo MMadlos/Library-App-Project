@@ -13,7 +13,7 @@ const library = (() => {
     })();
 
 
-    function createCard(array) {
+    function createCard(book) {
         //Create and select html elements
         const gridContainer = document.getElementById("grid-container")
         const cardContainer = document.createElement("div")
@@ -65,11 +65,11 @@ const library = (() => {
         deleteBtn.textContent = "Eliminar"
 
         // Add dynamic content
-        titleValue.textContent = array.title
-        authorValue.textContent = array.author
-        pagesValue.textContent = array.pages
+        titleValue.textContent = book.title
+        authorValue.textContent = book.author
+        pagesValue.textContent = book.pages
 
-        if(array.isRead){
+        if(book.isRead){
             isReadBtn.textContent = "Leído"
             isReadBtn.classList.add("leido")
         } else {
@@ -78,7 +78,7 @@ const library = (() => {
         }
 
         //Set key attributes
-        cardContainer.setAttribute("data-index-myLibrary", myLibrary.indexOf(array))
+        cardContainer.setAttribute("data-index-myLibrary", myLibrary.indexOf(book))
 
         // Bind events
         toggleIsReadBtn(isReadBtn)
@@ -145,4 +145,6 @@ const library = (() => {
     
 })();
 
-//!! No funciona por array, sino por elementos.
+// TEMAS PENDIENTES:
+// No funciona por array, sino por elementos.
+// No hay restricciones al añadir un libro
