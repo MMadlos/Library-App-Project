@@ -1,149 +1,148 @@
-let myLibrary = [];
+const library = (() => {
+    const myLibrary = [
+        {title: "El nombre del viento", author: "Autor 1", pages: "1", isRead: true}
+    ];
 
-function Book(title, author, pages, isRead) {
-    this.title = title
-    this.author = author
-    this.pages = pages
-    this.isRead = isRead
-}
+    const defaultBooks = (() => {
+        addBookToLibrary("El nombre del viento", "Autor 1", "1", true)
+        addBookToLibrary("El temor de un hombre sabio", "Autor 2", "2", false)
+        addBookToLibrary("Titulo 3", "Testing", "3", false)
+        addBookToLibrary("Titulo 4", "Testing", "4", false)
 
-function addBookToLibrary(title, author, pages, isRead) {
-    const item = new Book(title, author, pages, isRead)
-    return myLibrary.push(item)
-}
-
-// DEFAULT
-
-addBookToLibrary("El nombre del viento", "Ni idea", "1", false)
-addBookToLibrary("Testing", "Testing", "2", true)
-addBookToLibrary("El nombre del viento", "Ni idea", "3", false)
-addBookToLibrary("El nombre del viento", "Ni idea", "4", true)
+        displayLibrary()
+    })();
 
 
-displayLibrary()
+    function createCard(array) {
+        //Create and select html elements
+        const gridContainer = document.getElementById("grid-container")
+        const cardContainer = document.createElement("div")
+        const textContainer = document.createElement("div")
+        const titleLabel = document.createElement("p")
+        const titleValue = document.createElement("p")
+        const authorLabel = document.createElement("p")
+        const authorValue = document.createElement("p")
+        const pagesLabel = document.createElement("p")
+        const pagesValue = document.createElement("p")
+        const cardBtnsContainer = document.createElement("div")
+        const isReadBtn = document.createElement("button")
+        const deleteBtn = document.createElement("button")
 
+        // Add attributes
+        cardContainer.classList.add("card-container")
+        textContainer.classList.add("text-container")
+        titleLabel.classList.add("text-title")
+        titleValue.classList.add("text-input")
+        authorLabel.classList.add("text-title")
+        authorValue.classList.add("text-input")
+        pagesLabel.classList.add("text-title")
+        pagesValue.classList.add("pages")
+    
+        cardBtnsContainer.classList.add("card-btns-container")
+        isReadBtn.classList.add("btn")
+        deleteBtn.classList.add("btn", "eliminar")
+    
+        isReadBtn.setAttribute("type", "button")
+        deleteBtn.setAttribute("type", "button")
 
+        // HTML skeleton
+        gridContainer.appendChild(cardContainer)
+        cardContainer.appendChild(textContainer)
+        textContainer.appendChild(titleLabel)
+        textContainer.appendChild(titleValue)
+        textContainer.appendChild(authorLabel)
+        textContainer.appendChild(authorValue)
+        textContainer.appendChild(pagesLabel)
+        textContainer.appendChild(pagesValue)
+        cardContainer.appendChild(cardBtnsContainer)
+        cardBtnsContainer.appendChild(isReadBtn)
+        cardBtnsContainer.appendChild(deleteBtn)
 
-// Add new card
-function newCardContainer(array) {
-    //Select and create html elements
-    const gridContainer = document.getElementById("grid-container")
-    const cardContainer = document.createElement("div")
+        // Add static content
+        titleLabel.textContent = "Título"
+        authorLabel.textContent = "Autor"
+        pagesLabel.textContent = "Páginas"
+        deleteBtn.textContent = "Eliminar"
 
-    const textContainer = document.createElement("div")
-    const titleLabel = document.createElement("p")
-    const titleValue = document.createElement("p")
-    const authorLabel = document.createElement("p")
-    const authorValue = document.createElement("p")
-    const pagesLabel = document.createElement("p")
-    const pagesValue = document.createElement("p")
+        // Add dynamic content
+        titleValue.textContent = array.title
+        authorValue.textContent = array.author
+        pagesValue.textContent = array.pages
 
-    const cardBtnsContainer = document.createElement("div")
-    const isReadBtn = document.createElement("button")
-    const deleteBtn = document.createElement("button")
+        if(array.isRead){
+            isReadBtn.textContent = "Leído"
+            isReadBtn.classList.add("leido")
+        } else {
+            isReadBtn.textContent = "No leído"
+            isReadBtn.classList.add("no-leido")
+        }
 
-    // Add classes & attributes to html elements
-    cardContainer.classList.add("card-container")
-    textContainer.classList.add("text-container")
-    titleLabel.classList.add("text-title")
-    titleValue.classList.add("text-input")
-    authorLabel.classList.add("text-title")
-    authorValue.classList.add("text-input")
-    pagesLabel.classList.add("text-title")
-    pagesValue.classList.add("pages")
+        //Set key attributes
+        cardContainer.setAttribute("data-index-myLibrary", myLibrary.indexOf(array))
 
-    cardBtnsContainer.classList.add("card-btns-container")
-    isReadBtn.classList.add("btn")
-    deleteBtn.classList.add("btn", "eliminar")
+        // Bind events
+        toggleIsReadBtn(isReadBtn)
+        deleteBtn.addEventListener("click", deleteCard)
 
-    isReadBtn.setAttribute("type", "button")
-    deleteBtn.setAttribute("type", "button")
-
-    // HTML Skeleton
-    gridContainer.appendChild(cardContainer)
-    cardContainer.append(textContainer, cardBtnsContainer)
-    textContainer.append(titleLabel, titleValue, authorLabel, authorValue, pagesLabel, pagesValue)
-    cardBtnsContainer.append(isReadBtn, deleteBtn)
-
-
-    // Static content of html elements
-    titleLabel.textContent = "Título"
-    authorLabel.textContent = "Autor"
-    pagesLabel.textContent = "Páginas"
-    deleteBtn.textContent = "Eliminar"
-
-    // Dynamic content of html elements
-    titleValue.textContent = array.title
-    authorValue.textContent = array.author
-    pagesValue.textContent = array.pages
-
-    if(array.isRead){
-        isReadBtn.textContent = "Leído"
-        isReadBtn.classList.add("leido")
-    } else {
-        isReadBtn.textContent = "No leído"
-        isReadBtn.classList.add("no-leido")
     }
 
-    toggleIsReadBtn(isReadBtn)
-    addDeleteBtn(deleteBtn)
+    function addBookToLibrary (title, author, pages, isRead) {
+        const newBook = {title, author, pages, isRead}
 
-    //Set key attributes
-    cardContainer.setAttribute("data-index-myLibrary", myLibrary.indexOf(array))
-}
+        myLibrary.push(newBook);
+        displayLibrary();
+    }
 
+    // Bind events
+    const addBtn = document.getElementById("btn_añadir")
+    addBtn.addEventListener("click", addFormValues)
 
-// Add new book
+    // Update library (Eg: after deleting an item)
+    function displayLibrary() {
+        const allCardContainers = document.querySelectorAll(".card-container")
+        allCardContainers.forEach(card => {
+            card.remove();
+        })
 
-const formTitulo = document.getElementById("titulo")
-const formAutor = document.getElementById("autor")
-const formPaginas = document.getElementById("paginas")
-const formLeido = document.getElementById("leido")
-const btnAñadir = document.getElementById("btn_añadir")
+        myLibrary.forEach(book => {
+            createCard(book)
+        })
+    }
 
-btnAñadir.addEventListener("click", () => {
-    addBookToLibrary(formTitulo.value, formAutor.value, formPaginas.value, formLeido.checked)
-    newCardContainer(myLibrary.at(-1))
+    function addFormValues() {
+        let formTitle = document.getElementById("titulo")
+        let formAuthor = document.getElementById("autor")
+        let formPages = document.getElementById("paginas")
+        let formIsRead = document.getElementById("leido")
 
-    //Reset form values
-    formTitulo.value = ""
-    formAutor.value = ""
-    formPaginas.value = ""
-    formLeido.checked = false;
-})
+        addBookToLibrary(formTitle.value, formAuthor.value, formPages.value, formIsRead.checked)
 
-// Update library (Eg: after deleting an item)
-function displayLibrary() {
-    const allCardContainers = document.querySelectorAll(".card-container")
-    allCardContainers.forEach(card => {
-        card.remove();
-    })
+        //Reset form values
+        formTitle.value = ""
+        formAuthor.value = ""
+        formPages.value = ""
+        formIsRead.checked = false;
+    };
 
-    myLibrary.forEach(book => {
-        newCardContainer(book)
-    })
-}
+    function toggleIsReadBtn(btn) {
+        btn.addEventListener("click", () => {
+            btn.classList.toggle("leido");
+            btn.classList.toggle("no-leido");
 
+            (btn.textContent == "Leído") ? (btn.textContent = "No leído") : (btn.textContent = "Leído");
+        })
+    }
 
-// isReadBtn
-function toggleIsReadBtn(btn) {
-    btn.addEventListener("click", () => {
-        btn.classList.toggle("leido");
-        btn.classList.toggle("no-leido");
-
-        (btn.textContent == "Leído") ? (btn.textContent = "No leído") : (btn.textContent = "Leído");
-    })
-}
-
-// BOTON ELIMINAR
-function addDeleteBtn(btn) {
-    btn.addEventListener("click", () => {
-        const cardContainer = btn.parentNode.parentNode
+    function deleteCard(event) {
+        const cardContainer = event.target.parentNode.parentNode
         const cardIndexArray = cardContainer.getAttribute("data-index-myLibrary")
-        
+
         myLibrary.splice([cardIndexArray], 1)
 
-        //Falta actualizar lo que se ve en pantalla
         displayLibrary()
-    })
-}
+    }
+
+    
+})();
+
+//!! No funciona por array, sino por elementos.
